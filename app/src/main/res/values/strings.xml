@@ -1,0 +1,68 @@
+<resources>
+    <string name="app_name">Invoice</string>
+    <string name="customer_name">Customer Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="items">Items</string>
+    <string name="items_description">Items Description</string>
+    <string name="selling_price">Selling Price</string>
+    <string name="price_per_item">Price Per Item</string>
+    <string name="quantity">Quantity</string>
+
+    <string name="add_item_to_bill">Add item to bill</string>
+    <string name="finish">Finish</string>
+    <string name="gstin_number">GSTIN Number</string>
+    <string name="shop_name">Shop Name</string>
+    <string name="shop_address">Shop Address</string>
+    <string name="set_shop_details">Set Shop Details</string>
+    <string name="city">City</string>
+    <string name="district">District</string>
+    <string name="pin_code">Pin Code</string>
+    <string name="state">State</string>
+    <string name="mobile_no1">Mobile No1</string>
+    <string name="mobile_no2">Mobile No2 (Optional)</string>
+    <string name="clear_items">Clear Items</string>
+    <string name="next">Next</string>
+    <string name="address">Address</string>
+    <string name="mobile">Mobile</string>
+
+    <string-array name="state">
+        <item>-Select State-</item>
+        <item>Andaman and Nicobar</item>
+        <item>Andhra Pradesh</item>
+        <item>Arunachal Pradesh</item>
+        <item>Assam</item>
+        <item>Bihar</item>
+        <item>Chandigarh</item>
+        <item>Chhattishgarh</item>
+        <item>Dadra and N. Haveli</item>
+        <item>Daman and Diu</item>
+        <item>Delhi</item>
+        <item>Goa</item>
+        <item>Gujrat</item>
+        <item>Haryana</item>
+        <item>Himachal Pradesh</item>
+        <item>Jammu and Kashmir</item>
+        <item>Jharkhand</item>
+        <item>Karnataka</item>
+        <item>Kerala</item>
+        <item>Lakshadweep</item>
+        <item>Madhya Pradesh</item>
+        <item>Maharashtra</item>
+        <item>Manipur</item>
+        <item>Meghayala</item>
+        <item>Mizoram</item>
+        <item>Nagaland</item>
+        <item>Orrisa</item>
+        <item>Pondicherry</item>
+        <item>Punjab</item>
+        <item>Rajasthan</item>
+        <item>Sikkim</item>
+        <item>Tamil Nadu</item>
+        <item>Telangana</item>
+        <item>Tripura</item>
+        <item>Uttar Pradesh</item>
+        <item>Uttarakhand</item>
+        <item>West Bengal</item>
+    </string-array>
+
+</resources>

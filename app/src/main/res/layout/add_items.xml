@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/_10sdp"
+    android:scrollbars="none">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/items" />
+
+        <EditText
+            android:id="@+id/item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:autofillHints=""
+            android:hint="@string/items_description"
+            android:inputType="text"
+            android:maxLines="1"
+            android:minHeight="48dp"
+            android:textColorHint="#757575" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/selling_price" />
+
+        <EditText
+            android:id="@+id/rate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:autofillHints=""
+            android:hint="@string/price_per_item"
+            android:inputType="numberDecimal"
+            android:maxLines="1"
+            android:minHeight="48dp"
+            android:textColorHint="#757575" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/quantity" />
+
+        <EditText
+            android:id="@+id/quantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textColorHint="#757575"
+            android:autofillHints=""
+            android:hint="@string/quantity"
+            android:inputType="number"
+            android:maxLength="3"
+            android:maxLines="1"
+            android:minHeight="48dp" />
+
+
+        <Button
+            android:id="@+id/additem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:background="@color/colorPrimary"
+            android:text="@string/add_item_to_bill"
+            android:textColor="@android:color/white" />
+
+
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TableRow android:background="#FF6F00" android:padding="5dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Sr."
+                    android:gravity="center"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Item Name"
+                    android:gravity="center"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Quanity"
+                    android:gravity="center"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Rate"
+                    android:gravity="center"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Total"
+                    android:gravity="center"/>
+            </TableRow>
+        </TableLayout>
+
+
+
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TableRow android:background="#CDEFEEE8" android:padding="5dp">
+                    <TextView
+                        android:id="@+id/tsrno"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/tname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/tquantity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"/>
+                    <TextView
+                        android:id="@+id/trate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"/>
+                    <TextView
+                        android:id="@+id/ttotal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"/>
+                </TableRow>
+
+            </TableLayout>
+
+
+
+
+        <Button
+
+            android:id="@+id/clear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="#FF0073"
+            android:text="@string/clear_items"
+            android:textAllCaps="true"
+            android:textColor="#000000" />
+
+        <Button
+
+            android:id="@+id/finish"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="#2FFF00"
+            android:text="@string/finish"
+            android:textAllCaps="true"
+            android:textColor="#000000" />
+
+    </LinearLayout>
+
+
+
+
+</ScrollView>

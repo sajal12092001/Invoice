@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/_10sdp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="@dimen/_255sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_12sdp">
+
+            <EditText
+                android:id="@+id/gstno"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:hint="@string/gstin_number"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="@dimen/_255sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_12sdp">
+
+            <EditText
+                android:id="@+id/shopname"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:hint="@string/shop_name"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="@dimen/_255sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_12sdp">
+
+            <EditText
+                android:id="@+id/shopaddress"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:hint="@string/shop_address"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                tools:ignore="TextFields,SpeakableTextPresentCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="@dimen/_255sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_12sdp">
+
+            <EditText
+                android:id="@+id/city"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:hint="@string/city"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                tools:ignore="TextFields,SpeakableTextPresentCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="@dimen/_255sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_4sdp">
+
+            <EditText
+                android:id="@+id/district"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:hint="@string/district"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                tools:ignore="TextFields,SpeakableTextPresentCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="@dimen/_255sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_12sdp">
+
+            <Spinner
+                android:id="@+id/state"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_48sdp"
+                android:background="@drawable/border"
+                android:entries="@array/state"
+                android:hint="@string/state"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
+                android:spinnerMode="dropdown"
+
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="@dimen/_255sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_12sdp">
+
+            <EditText
+                android:id="@+id/pincode"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:hint="@string/pin_code"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                tools:ignore="TextFields,SpeakableTextPresentCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="@dimen/_255sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_12sdp">
+
+            <EditText
+                android:id="@+id/mob1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:hint="@string/mobile_no1"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                tools:ignore="TextFields,SpeakableTextPresentCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="@dimen/_255sdp"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/mob2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:hint="@string/mobile_no2"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                tools:ignore="TextFields,SpeakableTextPresentCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        <Button
+            android:id="@+id/setbutton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_29sdp"
+            android:backgroundTint="#E8D4CE"
+            android:text="@string/set_shop_details"
+            android:textColor="#212121" />
+
+
+    </LinearLayout>
+
+</ScrollView>
