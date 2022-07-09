@@ -13,23 +13,24 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.draw.LineSeparator;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class Invoice extends AppCompatActivity {
-    String cname,caddress,cmobile,date;
+    String cname, caddress, cmobile, date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_invoice);
 
-         cname = getIntent().getStringExtra("name");
-         caddress = getIntent().getStringExtra("address");
-         cmobile = getIntent().getStringExtra("mobile");
-         date = getIntent().getStringExtra("date&time");
+        cname = getIntent().getStringExtra("name");
+        caddress = getIntent().getStringExtra("address");
+        cmobile = getIntent().getStringExtra("mobile");
+        date = getIntent().getStringExtra("date&time");
 
         createpdf();
     }
@@ -142,23 +143,75 @@ public class Invoice extends AppCompatActivity {
 
             Paragraph shop_mob = null;
             if (cursor.moveToFirst()) {
-              if(cursor.getString(9).equals(""))
-              {
-                  shop_mob = new Paragraph(String.valueOf(new Chunk("Mob. " + cursor.getString(8))), new Font(Font.FontFamily.HELVETICA, 15, Font.NORMAL));
+                if (cursor.getString(9).equals("")) {
+                    shop_mob = new Paragraph(String.valueOf(new Chunk("Mob. " + cursor.getString(8))), new Font(Font.FontFamily.HELVETICA, 15, Font.NORMAL));
 
-              }
-              else
-              {
-                  shop_mob = new Paragraph(String.valueOf(new Chunk("Mob. " + cursor.getString(8) + ", " + cursor.getString(9))), new Font(Font.FontFamily.HELVETICA, 15, Font.NORMAL));
-              }
+                } else {
+                    shop_mob = new Paragraph(String.valueOf(new Chunk("Mob. " + cursor.getString(8) + ", " + cursor.getString(9))), new Font(Font.FontFamily.HELVETICA, 15, Font.NORMAL));
+                }
             }
             assert shop_mob != null;
             shop_mob.setAlignment(Element.ALIGN_CENTER);
             document.add(shop_mob);
 
+
+            /*
+
+            ----------------LINE SEPARATOR---------------
+
+             */
+
+            Paragraph blankline=new Paragraph("\n");
+            LineSeparator blackline =new LineSeparator();
+            document.add(blankline);
+            document.add(blackline);
+
+
+
+             /*
+
+              -------------------BILL to--------------------
+
+             */
+
+
+            Paragraph bill_to = new Paragraph("Bill to-", new Font(Font.FontFamily.UNDEFINED));
+            document.add(bill_to);
+
+
+            /*
+
+            ---------------CUSTOMER NAME-------------------
+
+             */
+
+            Paragraph custname = new Paragraph("     Name      :  " + cname);
+            document.add(custname);
+
+
+            /*
+
+            ---------------CUSTOMER ADDRESS-------------------
+
+             */
+
+            Paragraph custaddress = new Paragraph("     Address  :  " + caddress);
+            document.add(custaddress);
+
+            /*
+
+            ---------------CUSTOMER PHONE-------------------
+
+             */
+
+            Paragraph custmobile = new Paragraph("     Mobile     :  " + cmobile);
+            document.add(custmobile);
+
+
+            //document close
+
             document.close();
 
-            Toast.makeText(this, file1.getAbsolutePath(), Toast.LENGTH_SHORT).show();
 
         } catch (Exception e) {
             e.printStackTrace();
