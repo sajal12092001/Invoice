@@ -161,8 +161,8 @@ public class Invoice extends AppCompatActivity {
 
              */
 
-            Paragraph blankline=new Paragraph("\n");
-            LineSeparator blackline =new LineSeparator();
+            Paragraph blankline = new Paragraph("\n");
+            LineSeparator blackline = new LineSeparator();
             document.add(blankline);
             document.add(blackline);
 
