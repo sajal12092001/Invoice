@@ -21,7 +21,7 @@ public class Shop_Details extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
 
-        Cursor check = conn.get_shop_number();
+        Cursor check = conn.get_shop_details();
         if (check.getCount() == 1) {
             Intent intent = new Intent(Shop_Details.this, Add_Customer_Detail.class);
             startActivity(intent);

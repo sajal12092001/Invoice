@@ -21,22 +21,19 @@ public class Add_Customer_Detail extends AppCompatActivity {
         mob = findViewById(R.id.mobile);
 
         next = findViewById(R.id.nextbutton);
-        Conn conn = new Conn(this);
-        next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String cname = name.getText().toString().trim().toUpperCase();
-                String caddress = address.getText().toString().trim().toUpperCase();
-                String cmob = mob.getText().toString().trim().toUpperCase();
-                if (cname.isEmpty()) {
-                    name.setError("Please enter the name customer name");
-                } else {
-                    boolean check = conn.add_customers_details(cname, caddress, cmob);
-                    if (check) {
-                        Intent intent = new Intent(Add_Customer_Detail.this, Add_Items.class);
-                        startActivity(intent);
-                    }
-                }
+        next.setOnClickListener(view -> {
+            String cname = name.getText().toString().trim().toUpperCase();
+            String caddress = address.getText().toString().trim().toUpperCase();
+            String cmob = mob.getText().toString().trim().toUpperCase();
+            if (cname.isEmpty()) {
+                name.setError("Please enter the name customer name");
+            } else {
+                    Intent intent = new Intent(Add_Customer_Detail.this, Add_Items.class);
+                    intent.putExtra("name",cname);
+                    intent.putExtra("address",caddress);
+                    intent.putExtra("mobile",cmob);
+                    startActivity(intent);
+
             }
         });
     }

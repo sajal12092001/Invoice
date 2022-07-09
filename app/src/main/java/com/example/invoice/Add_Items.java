@@ -1,6 +1,9 @@
 package com.example.invoice;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,13 +11,19 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Add_Items extends AppCompatActivity {
     EditText name, rate, quantity;
     Button add, finish, clear;
     TextView sr, tname, tquantity, trate, ttotal;
 
+    @SuppressLint("SetTextI18n")
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +44,10 @@ public class Add_Items extends AppCompatActivity {
         trate = findViewById(R.id.trate);
         ttotal = findViewById(R.id.ttotal);
         Conn conn = new Conn(this);
+
+        String cname = getIntent().getStringExtra("name");
+        String caddress = getIntent().getStringExtra("address");
+        String cmobile = getIntent().getStringExtra("mobile");
 
         add.setOnClickListener(view -> {
             String itemname = name.getText().toString().trim().toUpperCase();
@@ -78,22 +91,33 @@ public class Add_Items extends AppCompatActivity {
                 Toast.makeText(Add_Items.this, "Failure", Toast.LENGTH_SHORT).show();
         });
 
-        finish.setOnClickListener(view -> {
+
+        clear.setOnClickListener(view -> {
+            sr.setText("");
+            tname.setText("");
+            tquantity.setText("");
+            trate.setText("");
+            ttotal.setText("");
+            conn.delete_create_item_table();
 
         });
 
 
-        clear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                sr.setText("");
-                tname.setText("");
-                tquantity.setText("");
-                trate.setText("");
-                ttotal.setText("");
-                conn.delete_create_item_table();
+        finish.setOnClickListener(view -> {
 
-            }
+            LocalDateTime myDateObj = LocalDateTime.now();
+            DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("E, dd MMM yyyy hh:mm:ss a");
+            String formattedDate = myDateObj.format(myFormatObj);
+
+            Intent intent = new Intent(Add_Items.this, Invoice.class);
+
+            intent.putExtra("name", cname);
+            intent.putExtra("address", caddress);
+            intent.putExtra("mobile", cmobile);
+            intent.putExtra("date&time",formattedDate);
+
+            startActivity(intent);
+
         });
 
 

@@ -37,13 +37,6 @@ public class Conn extends SQLiteOpenHelper {
                 "total    DOUBLE       NOT NULL);");
 
 
-
-        sqLiteDatabase.execSQL("CREATE TABLE customers (id INTEGER PRIMARY KEY ASC AUTOINCREMENT NOT NULL," +
-                "name    VARCHAR (30) NOT NULL," +
-                "address varchar(100)      NOT NULL," +
-                "mobile varchar(12)       NOT NULL);");
-
-
     }
 
     @Override
@@ -52,16 +45,6 @@ public class Conn extends SQLiteOpenHelper {
     }
 
 
-
-    public boolean add_customers_details(String name,String address,String mob){
-        SQLiteDatabase db=this.getWritableDatabase();
-        ContentValues c=new ContentValues();
-        c.put("name",name);
-        c.put("address",address);
-        c.put("mobile",mob);
-        long r=db.insert("customers",null,c);
-        return r!=-1;
-    }
 
 
 
@@ -99,7 +82,7 @@ public class Conn extends SQLiteOpenHelper {
         long r= db.insert("shop_details",null,c);
         return r!=-1;
     }
-    public Cursor get_shop_number()
+    public Cursor get_shop_details()
     {
         SQLiteDatabase db=this.getWritableDatabase();
         return db.rawQuery("select *from shop_details",null);

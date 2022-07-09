@@ -10,11 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Invoice">
         <activity
+            android:name=".Invoice"
+            android:exported="false" />
+        <activity
             android:name=".Add_Customer_Detail"
             android:exported="false" />
         <activity
             android:name=".Add_Items"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".Shop_Details"
             android:exported="true">
