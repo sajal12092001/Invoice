@@ -45,9 +45,6 @@ public class Add_Items extends AppCompatActivity {
         ttotal = findViewById(R.id.ttotal);
         Conn conn = new Conn(this);
 
-        String cname = getIntent().getStringExtra("name");
-        String caddress = getIntent().getStringExtra("address");
-        String cmobile = getIntent().getStringExtra("mobile");
 
         add.setOnClickListener(view -> {
             String itemname = name.getText().toString().trim().toUpperCase();
@@ -111,9 +108,6 @@ public class Add_Items extends AppCompatActivity {
 
             Intent intent = new Intent(Add_Items.this, Invoice.class);
 
-            intent.putExtra("name", cname);
-            intent.putExtra("address", caddress);
-            intent.putExtra("mobile", cmobile);
             intent.putExtra("date&time",formattedDate);
 
             startActivity(intent);

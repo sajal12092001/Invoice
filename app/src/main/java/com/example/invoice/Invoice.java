@@ -1,5 +1,6 @@
 package com.example.invoice;
 
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -27,9 +28,11 @@ public class Invoice extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_invoice);
 
-        cname = getIntent().getStringExtra("name");
-        caddress = getIntent().getStringExtra("address");
-        cmobile = getIntent().getStringExtra("mobile");
+        SharedPreferences sharedPreferences = getSharedPreferences("customer", MODE_PRIVATE);
+        cname = sharedPreferences.getString("name", "");
+        caddress = sharedPreferences.getString("address", "");
+        cmobile = sharedPreferences.getString("mobile", "");
+
         date = getIntent().getStringExtra("date&time");
 
         createpdf();
@@ -206,6 +209,19 @@ public class Invoice extends AppCompatActivity {
 
             Paragraph custmobile = new Paragraph("     Mobile     :  " + cmobile);
             document.add(custmobile);
+
+
+
+            /*
+
+            ----------------LINE SEPARATOR---------------
+
+             */
+
+            Paragraph blankline1 = new Paragraph("\n");
+            LineSeparator blackline1 = new LineSeparator();
+            document.add(blankline1);
+            document.add(blackline1);
 
 
             //document close
