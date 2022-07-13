@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     android:layout_margin="@dimen/_5sdp"
+    android:background="@color/white"
     tools:context=".Add_Items">
 
 
@@ -12,11 +12,10 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_margin="@dimen/_4sdp"
         android:background="@color/white"
-        android:orientation="vertical"
-        android:layout_alignParentTop="true"
-        >
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
@@ -87,10 +86,9 @@
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_below="@id/linearLayout"
         android:layout_above="@id/linearLayout2"
-        >
+        android:layout_below="@id/linearLayout"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
@@ -114,25 +112,26 @@
         android:id="@+id/finish"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:backgroundTint="#2FFF00"
         android:text="@string/finish"
         android:textAllCaps="true"
-        android:textColor="#000000"
-        android:layout_alignParentBottom="true"/>
+        android:textColor="#000000" />
 
     <RelativeLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/finish"
         android:background="@color/white"
-        android:orientation="horizontal"
-        android:layout_above="@+id/finish">
+        android:orientation="horizontal">
 
         <TextView
-            android:layout_alignParentStart="true"
             android:id="@+id/grand"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="@dimen/_9sdp"
             android:text="@string/grand_total"
             android:textColor="@color/black"
             android:textSize="@dimen/_12sdp"
@@ -142,13 +141,14 @@
             android:id="@+id/grandtotal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/grand_total"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_12sdp"
-            android:textStyle="bold"
             android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/_9sdp"
             android:layout_toEndOf="@id/grand"
-            android:gravity="end"/>
+            android:gravity="end"
+            android:text="@string/grand_total"
+            android:textColor="#DD2C00"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 

@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class Add_Items extends AppCompatActivity {
+    TextView grandtot;
     EditText name, rate, quantity;
     Button add, finish;
     RecyclerView recview;
@@ -35,6 +36,7 @@ public class Add_Items extends AppCompatActivity {
         name = findViewById(R.id.item);
         rate = findViewById(R.id.rate);
         quantity = findViewById(R.id.quantity);
+        grandtot = findViewById(R.id.grandtotal);
 
         recview=findViewById(R.id.recviewitems);
         recview.setLayoutManager(new LinearLayoutManager(this));
@@ -45,22 +47,32 @@ public class Add_Items extends AppCompatActivity {
         finish = findViewById(R.id.finish);
 
         add.setOnClickListener(view -> {
+
             String itemname=name.getText().toString().toUpperCase().trim();
             String itemrate=rate.getText().toString().toUpperCase().trim();
             String itemqty=quantity.getText().toString().toUpperCase().trim();
 
-            String subtotal=""+(Double.parseDouble(itemrate)*Integer.parseInt(itemqty));
+            if(itemname.isEmpty()&&itemrate.isEmpty()&&itemqty.isEmpty())
+            {name.setError("Enter the item name");
 
-            Conn conn=new Conn(this);
-            conn.add_items(itemname,itemrate,itemqty,subtotal);
+            rate.setError("Enter the item price");
+            quantity.setError("Enter the wuantity");}
+            else {
+                String subtotal = "" + (Double.parseDouble(itemrate) * Integer.parseInt(itemqty));
 
-            setRecview();
+                Conn conn = new Conn(this);
+                conn.add_items(itemname, itemrate, itemqty, subtotal);
+
+                setRecview();
+                grandtot.setText("" + grandtotal);
+            }
 
         });
     }
 
     @SuppressLint("NotifyDataSetChanged")
     public void setRecview(){
+        grandtotal=0;
         datalist.clear();
         Conn conn=new Conn(this);
         Cursor cursor=conn.get_items();
