@@ -20,7 +20,6 @@ public class Shop_Details extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         Cursor check = conn.get_shop_details();
         if (check.getCount() == 1) {
             Intent intent = new Intent(Shop_Details.this, Add_Customer_Detail.class);
@@ -28,7 +27,6 @@ public class Shop_Details extends AppCompatActivity {
         } else {
             setContentView(R.layout.shop_details);
             setTitle("Shop Details");
-
 
             gstno = findViewById(R.id.gstno);
             shopname = findViewById(R.id.shopname);
@@ -42,6 +40,7 @@ public class Shop_Details extends AppCompatActivity {
             setbutton = findViewById(R.id.setbutton);
 
             setbutton.setOnClickListener(view -> {
+
                 String gst = gstno.getText().toString().trim().toUpperCase();
                 String name = shopname.getText().toString().trim().toUpperCase();
                 String address = shopaddress.getText().toString().trim().toUpperCase();
@@ -56,12 +55,8 @@ public class Shop_Details extends AppCompatActivity {
                 if (check1) {
                     Intent intent = new Intent(Shop_Details.this, Add_Customer_Detail.class);
                     startActivity(intent);
-
                 }
             });
-
         }
-
-
     }
 }

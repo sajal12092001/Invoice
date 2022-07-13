@@ -34,7 +34,7 @@ public class Add_Customer_Detail extends AppCompatActivity {
             editor.apply();
 
             if (cname.isEmpty()) {
-                name.setError("Please enter the name customer name");
+                name.setError("Please enter the customer name");
             } else {
                 Intent intent = new Intent(Add_Customer_Detail.this, Add_Items.class);
                 startActivity(intent);

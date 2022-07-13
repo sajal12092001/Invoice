@@ -1,26 +1,28 @@
 package com.example.invoice;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class Add_Items extends AppCompatActivity {
     EditText name, rate, quantity;
-    Button add, finish, clear;
-    TextView sr, tname, tquantity, trate, ttotal;
+    Button add, finish;
+    RecyclerView recview;
+    ArrayList<Add_Items_Model> datalist;
+    Add_Items_Adapter adapter;
+    double grandtotal=0;
+
 
     @SuppressLint("SetTextI18n")
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -34,94 +36,43 @@ public class Add_Items extends AppCompatActivity {
         rate = findViewById(R.id.rate);
         quantity = findViewById(R.id.quantity);
 
+        recview=findViewById(R.id.recviewitems);
+        recview.setLayoutManager(new LinearLayoutManager(this));
+
+        datalist=new ArrayList<>();
+
         add = findViewById(R.id.additem);
         finish = findViewById(R.id.finish);
-        clear = findViewById(R.id.clear);
-
-        sr = findViewById(R.id.tsrno);
-        tname = findViewById(R.id.tname);
-        tquantity = findViewById(R.id.tquantity);
-        trate = findViewById(R.id.trate);
-        ttotal = findViewById(R.id.ttotal);
-        Conn conn = new Conn(this);
-
 
         add.setOnClickListener(view -> {
-            String itemname = name.getText().toString().trim().toUpperCase();
-            double itemrate = Double.parseDouble(rate.getText().toString().trim());
-            int itemquantity = Integer.parseInt(quantity.getText().toString().trim());
-            double total = itemrate * itemquantity;
+            String itemname=name.getText().toString().toUpperCase().trim();
+            String itemrate=rate.getText().toString().toUpperCase().trim();
+            String itemqty=quantity.getText().toString().toUpperCase().trim();
 
-            boolean check = conn.add_items(itemname, itemquantity, itemrate, total);
-            if (check) {
-                Toast.makeText(Add_Items.this, "Success", Toast.LENGTH_SHORT).show();
-                name.setText("");
-                rate.setText("");
-                quantity.setText("");
-                sr.setText("");
-                tname.setText("");
-                tquantity.setText("");
-                trate.setText("");
-                ttotal.setText("");
-                Cursor cursor = conn.get_items();
-                if (cursor.moveToFirst()) {
+            String subtotal=""+(Double.parseDouble(itemrate)*Integer.parseInt(itemqty));
 
-                    sr.setText(cursor.getString(0) + "\n");
-                    tname.setText(cursor.getString(1) + "\n");
-                    tquantity.setText(cursor.getString(2) + "\n");
-                    trate.setText(cursor.getString(3) + "\n");
-                    ttotal.setText(cursor.getString(4) + "\n");
-                }
+            Conn conn=new Conn(this);
+            conn.add_items(itemname,itemrate,itemqty,subtotal);
 
-
-                while (cursor.moveToNext()) {
-
-
-                    sr.append(cursor.getString(0) + "\n");
-                    tname.append(cursor.getString(1) + "\n");
-                    tquantity.append(cursor.getString(2) + "\n");
-                    trate.append(cursor.getString(3) + "\n");
-                    ttotal.append(cursor.getString(4) + "\n");
-                }
-
-            } else
-                Toast.makeText(Add_Items.this, "Failure", Toast.LENGTH_SHORT).show();
-        });
-
-
-        clear.setOnClickListener(view -> {
-            sr.setText("");
-            tname.setText("");
-            tquantity.setText("");
-            trate.setText("");
-            ttotal.setText("");
-            conn.delete_create_item_table();
+            setRecview();
 
         });
-
-
-        finish.setOnClickListener(view -> {
-
-            LocalDateTime myDateObj = LocalDateTime.now();
-            DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("E, dd MMM yyyy hh:mm:ss a");
-            String formattedDate = myDateObj.format(myFormatObj);
-
-            Intent intent = new Intent(Add_Items.this, Invoice.class);
-
-            intent.putExtra("date&time",formattedDate);
-
-            startActivity(intent);
-
-        });
-
-
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        finishAffinity();
+    @SuppressLint("NotifyDataSetChanged")
+    public void setRecview(){
+        datalist.clear();
+        Conn conn=new Conn(this);
+        Cursor cursor=conn.get_items();
+        while(cursor.moveToNext())
+        {
+            grandtotal+=Double.parseDouble(cursor.getString(4));
+            Add_Items_Model obj=new Add_Items_Model(cursor.getString(0),cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
+            datalist.add(obj);
+            adapter=new Add_Items_Adapter(datalist);
+            recview.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+        }
     }
-
 
 }
