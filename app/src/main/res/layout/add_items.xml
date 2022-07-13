@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/_10sdp"
-    android:scrollbars="none">
+    android:background="@color/white"
+    tools:context=".Add_Items">
 
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_margin="@dimen/_4sdp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        >
 
         <TextView
             android:layout_width="wrap_content"
@@ -56,13 +61,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:textColorHint="#757575"
             android:autofillHints=""
             android:hint="@string/quantity"
             android:inputType="number"
             android:maxLength="3"
             android:maxLines="1"
-            android:minHeight="48dp" />
+            android:minHeight="48dp"
+            android:textColorHint="#757575" />
 
 
         <Button
@@ -75,114 +80,73 @@
             android:textColor="@android:color/white" />
 
 
+    </LinearLayout>
 
-        <TableLayout
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/linearLayout"
+        android:layout_above="@id/linearLayout2"
+        >
+
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TableRow android:background="#FF6F00" android:padding="5dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Sr."
-                    android:gravity="center"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Item Name"
-                    android:gravity="center"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Quanity"
-                    android:gravity="center"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Rate"
-                    android:gravity="center"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Total"
-                    android:gravity="center"/>
-            </TableRow>
-        </TableLayout>
+            android:layout_height="@dimen/_25sdp"
+            android:background="#DD2C00"
+            android:fontFamily="sans-serif-smallcaps"
+            android:gravity="center_vertical"
+            android:text="@string/item_details"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
 
-
-
-
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TableRow android:background="#CDEFEEE8" android:padding="5dp">
-                    <TextView
-                        android:id="@+id/tsrno"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"/>
-                    <TextView
-                        android:id="@+id/tname"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"/>
-                    <TextView
-                        android:id="@+id/tquantity"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="right"/>
-                    <TextView
-                        android:id="@+id/trate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="right"/>
-                    <TextView
-                        android:id="@+id/ttotal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="right"/>
-                </TableRow>
-
-            </TableLayout>
-
-
-
-
-        <Button
-
-            android:id="@+id/clear"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recviewitems"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:backgroundTint="#FF0073"
-            android:text="@string/clear_items"
-            android:textAllCaps="true"
-            android:textColor="#000000" />
+            android:layout_height="match_parent" />
 
-        <Button
-
-            android:id="@+id/finish"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:backgroundTint="#2FFF00"
-            android:text="@string/finish"
-            android:textAllCaps="true"
-            android:textColor="#000000" />
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/finish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#2FFF00"
+        android:text="@string/finish"
+        android:textAllCaps="true"
+        android:textColor="#000000"
+        android:layout_alignParentBottom="true"/>
 
+    <RelativeLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:layout_above="@+id/finish">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/grand_total"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp"
+            android:layout_marginStart="@dimen/_9sdp"
+            android:textStyle="bold" />
 
-</ScrollView>
+        <TextView
+            android:id="@+id/grandtotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/grand_total"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/_9sdp"
+            android:layout_alignParentEnd="true"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
