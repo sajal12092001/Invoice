@@ -62,7 +62,7 @@
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="@color/colorDivider"
-        android:layout_marginTop="@dimen/_5sdp"/>
+        android:layout_margin="15dp"/>
 
 
 </LinearLayout>

@@ -9,7 +9,7 @@
 
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/additemlayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -67,7 +67,8 @@
             android:maxLength="3"
             android:maxLines="1"
             android:minHeight="48dp"
-            android:textColorHint="#757575" />
+            android:textColorHint="#757575"
+            tools:ignore="DuplicateSpeakableTextCheck" />
 
 
         <Button
@@ -83,11 +84,12 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout3"
+        android:id="@+id/recviewlayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/linearLayout2"
-        android:layout_below="@id/linearLayout"
+        android:layout_above="@id/discountlayout"
+        android:layout_below="@id/additemlayout"
+        android:layout_margin="4dp"
         android:orientation="vertical">
 
         <TextView
@@ -108,18 +110,44 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/finish"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:backgroundTint="#2FFF00"
-        android:text="@string/finish"
-        android:textAllCaps="true"
-        android:textColor="#000000" />
 
     <RelativeLayout
-        android:id="@+id/linearLayout2"
+        android:id="@+id/discountlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/grandtotallayout"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/discount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_9sdp"
+            android:text="@string/discount"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editdiscount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/_9sdp"
+            android:hint="@string/discount"
+            android:inputType="numberDecimal"
+            android:textColor="@color/black"
+            android:textColorHint="#78909C"
+
+            android:textStyle="bold"
+            tools:ignore="Autofill,RelativeOverlap,TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/grandtotallayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/finish"
@@ -151,5 +179,15 @@
             android:textStyle="bold" />
 
     </RelativeLayout>
+
+    <Button
+        android:id="@+id/finish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:backgroundTint="#2FFF00"
+        android:text="@string/finish"
+        android:textAllCaps="true"
+        android:textColor="#000000" />
 
 </RelativeLayout>

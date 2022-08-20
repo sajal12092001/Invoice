@@ -29,6 +29,7 @@
     <string name="item_details">Item Details</string>
     <string name="item_name">Item Name</string>
     <string name="grand_total">Grand Total:</string>
+    <string name="discount">Discount%</string>
 
     <string-array name="state">
         <item>-Select State-</item>

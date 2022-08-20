@@ -101,4 +101,10 @@ public class Conn extends SQLiteOpenHelper {
                 "    subtotal STRING  NOT NULL\n" +
                 ");\n");
     }
+
+    public void update_item(String id,String items, String rate, String quantity,String subtotal)
+    {
+        SQLiteDatabase db=this.getWritableDatabase();
+        db.execSQL("update item_details set itemname='"+items+"' , itemrate='"+rate+"',quantity='"+quantity+"',subtotal='"+subtotal+"' where id='"+id+"';");
+    }
 }
