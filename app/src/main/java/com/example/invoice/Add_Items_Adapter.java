@@ -1,10 +1,12 @@
 package com.example.invoice;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,13 +30,30 @@ public class Add_Items_Adapter extends RecyclerView.Adapter<Add_Items_Adapter.vi
 
     @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(@NonNull viewholder holder, int position) {
+    public void onBindViewHolder(@NonNull viewholder holder, @SuppressLint("RecyclerView") int position) {
 
-        holder.id.setText(datalist.get(position).getId());
-        holder.name.setText(datalist.get(position).getName());
-        holder.qtyrate.setText(datalist.get(position).getRate() + "X" + datalist.get(position).getQuantity());
-        holder.subtotal.setText(datalist.get(position).getSubtotal());
+        holder.itemname.setText(datalist.get(position).getItemname());
+        holder.itemsize.setText(datalist.get(position).getItemsize());
+        holder.qtyrate.setText(datalist.get(position).getItemrate() + "X" + datalist.get(position).getQuantity());
+        holder.subtotal.setText("Rs. " + datalist.get(position).getTotal());
+        holder.discount.setText(datalist.get(position).getDiscount());
+        holder.total.setText("Rs. " + datalist.get(position).getSubtotal());
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(holder.itemView.getContext(), Update_Items.class);
+                intent.putExtra("id", datalist.get(position).getId());
+                intent.putExtra("sizetype",datalist.get(position).getSizetype());
+                intent.putExtra("category",datalist.get(position).getCateogry());
+                //Toast.makeText(holder.itemView.getContext(), ""+datalist.get(position).getSizetype(), Toast.LENGTH_SHORT).show();
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                holder.itemView.getContext().startActivity(intent);
+
+
+            }
+        });
     }
 
     @Override
@@ -42,16 +61,18 @@ public class Add_Items_Adapter extends RecyclerView.Adapter<Add_Items_Adapter.vi
         return datalist.size();
     }
 
-    class viewholder extends RecyclerView.ViewHolder {
-        TextView id,name, qtyrate, subtotal;
+    static class viewholder extends RecyclerView.ViewHolder {
+        TextView itemname, itemsize, qtyrate, subtotal, discount, total;
 
 
         public viewholder(@NonNull View itemView) {
             super(itemView);
-            id = itemView.findViewById(R.id.id);
-            name = itemView.findViewById(R.id.itemname);
-            qtyrate = itemView.findViewById(R.id.quantityrate);
+            itemname = itemView.findViewById(R.id.itemname);
+            itemsize = itemView.findViewById(R.id.itemsize);
+            qtyrate = itemView.findViewById(R.id.quantity_rate);
             subtotal = itemView.findViewById(R.id.subtotal);
+            discount = itemView.findViewById(R.id.discount);
+            total = itemView.findViewById(R.id.total);
         }
     }
 }

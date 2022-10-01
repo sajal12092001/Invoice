@@ -4,7 +4,7 @@
     <string name="phone_number">Phone Number</string>
     <string name="items">Items</string>
     <string name="items_description">Items Description</string>
-    <string name="selling_price">Selling Price</string>
+    <string name="selling_price">Price</string>
     <string name="price_per_item">Price Per Item</string>
     <string name="quantity">Quantity</string>
 
@@ -30,6 +30,26 @@
     <string name="item_name">Item Name</string>
     <string name="grand_total">Grand Total:</string>
     <string name="discount">Discount%</string>
+    <string name="garments">Garments</string>
+    <string name="under_garments">Under Garments</string>
+    <string name="size">Size</string>
+    <string name="add_items">Add Items</string>
+    <string name="itemsize">itemsize</string>
+    <string name="quantity_rate">Quantity*rate</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="tdiscount">Tdiscount</string>
+    <string name="ttotal">Ttotal</string>
+    <string name="total">Total</string>
+    <string name="update">Update</string>
+    <string name="shop_details">Shop Details</string>
+    <string name="gst">GST :</string>
+    <string name="shop_name1">Shop Name :</string>
+    <string name="shop_address1">Shop Address :</string>
+    <string name="mobile1">Mobile :</string>
+    <string name="customer_details">Customer Details</string>
+    <string name="name">Name :</string>
+    <string name="address1">Address :</string>
+
 
     <string-array name="state">
         <item>-Select State-</item>
@@ -69,6 +89,13 @@
         <item>Uttar Pradesh</item>
         <item>Uttarakhand</item>
         <item>West Bengal</item>
+    </string-array>
+
+    <string-array name="select_sze">
+        <item>-Select Size-</item>
+        <item>Number</item>
+        <item>Roman</item>
+
     </string-array>
 
 </resources>

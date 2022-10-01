@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="@dimen/_10sdp">
+    android:layout_marginTop="@dimen/_10sdp"
+    tools:context=".Update_shop_details">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -190,7 +191,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_29sdp"
             android:backgroundTint="#E8D4CE"
-            android:text="@string/set_shop_details"
+            android:text="@string/update"
             android:textColor="#212121" />
 
 
