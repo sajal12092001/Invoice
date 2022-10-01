@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.invoice">
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -12,18 +13,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Invoice">
         <activity
+            android:name=".Update_shop_details"
+            android:exported="false" />
+        <activity
+            android:name=".update_customer"
+            android:exported="false" />
+        <activity
+            android:name=".Update_Items"
+            android:exported="false" />
+        <activity
+            android:name=".Add_Items"
+            android:exported="true" />
+        <activity
             android:name=".Invoice"
             android:exported="false" />
         <activity
             android:name=".Add_Customer_Detail"
-            android:exported="false" />
-        <activity
-            android:name=".Add_Items"
-            android:exported="true" >
-
-        </activity>
-        <activity
-            android:name=".Shop_Details"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,6 +36,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Items_Recyclerview"
+            android:exported="true" />
+        <activity
+            android:name=".Add_Shop_Details"
+            android:exported="true" />
     </application>
 
 </manifest>

@@ -35,9 +35,14 @@ public class Conn extends SQLiteOpenHelper {
                 "    id       INTEGER PRIMARY KEY ASC AUTOINCREMENT\n" +
                 "                     NOT NULL,\n" +
                 "    itemname STRING  NOT NULL,\n" +
+                "    itemsize STRING  NOT NULL,\n" +
                 "    itemrate STRING  NOT NULL,\n" +
                 "    quantity STRING  NOT NULL,\n" +
-                "    subtotal STRING  NOT NULL\n" +
+                "    subtotal STRING  NOT NULL,\n" +
+                "    itemdiscount STRING  NOT NULL,\n" +
+                "    total STRING  NOT NULL\n," +
+                "    sizetype STRING  NOT NULL\n," +
+                "    category STRING  NOT NULL\n" +
                 ");\n");
     }
 
@@ -62,15 +67,15 @@ public class Conn extends SQLiteOpenHelper {
         return r != -1;
     }
 
-
-    public void add_items(String items, String rate, String quantity,String subtotal) {
+    public void update_shop_details(String gstno, String shopname, String shopaddress, String city, String district, String state, String pincode, String mob1, String mob2) {
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues c = new ContentValues();
-        c.put("itemname", items);
-        c.put("itemrate", rate);
-        c.put("quantity", quantity);
-        c.put("subtotal",subtotal);
-        db.insert("item_details", null, c);
+        db.execSQL("update shop_details set gstno='" + gstno + "', shopname='" + shopname + "',shopaddress='" + shopaddress + "',city='" + city + "',district='" + district + "',state='" + state + "',pincode='" + pincode + "',mobile1='" + mob1 + "',mobile2='" + mob2 + "'");
+    }
+
+
+    public Cursor getSingleItmes(String id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.rawQuery("select *from item_details where id='" + id + "'", null);
 
     }
 
@@ -78,8 +83,6 @@ public class Conn extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.rawQuery("select *from item_details", null);
     }
-
-
 
 
     public Cursor get_shop_details() {
@@ -102,9 +105,26 @@ public class Conn extends SQLiteOpenHelper {
                 ");\n");
     }
 
-    public void update_item(String id,String items, String rate, String quantity,String subtotal)
-    {
-        SQLiteDatabase db=this.getWritableDatabase();
-        db.execSQL("update item_details set itemname='"+items+"' , itemrate='"+rate+"',quantity='"+quantity+"',subtotal='"+subtotal+"' where id='"+id+"';");
+    public void add_items(String items, String size, String rate, String quantity, String subtotal, String discount, String total, String sizetype, String category) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues c = new ContentValues();
+        c.put("itemname", items);
+        c.put("itemsize", size);
+        c.put("itemrate", rate);
+        c.put("quantity", quantity);
+        c.put("subtotal", subtotal);
+        c.put("itemdiscount", discount);
+        c.put("total", total);
+        c.put("sizetype", sizetype);
+        c.put("category", category);
+        db.insert("item_details", null, c);
+
     }
+
+    public void update_item(String id, String items, String size, String rate, String quantity, String subtotal, String discount, String total, String sizetype, String category) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("update item_details set itemname='" + items + "',itemsize='" + size + "',itemrate='" + rate + "',quantity='" + quantity + "',subtotal='" + subtotal + "',itemdiscount='" + discount + "',total='" + total + "',sizetype='" + sizetype + "',category='" + category + "' where id='" + id + "';");
+    }
+
+
 }

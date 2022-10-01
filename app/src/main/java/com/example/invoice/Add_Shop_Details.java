@@ -10,7 +10,7 @@ import android.widget.Spinner;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Shop_Details extends AppCompatActivity {
+public class Add_Shop_Details extends AppCompatActivity {
     Conn conn = new Conn(this);
     EditText gstno, shopname, shopaddress, city, district, pincode, mob1, mob2;
     Spinner state;
@@ -22,7 +22,7 @@ public class Shop_Details extends AppCompatActivity {
 
         Cursor check = conn.get_shop_details();
         if (check.getCount() == 1) {
-            Intent intent = new Intent(Shop_Details.this, Add_Customer_Detail.class);
+            Intent intent = new Intent(Add_Shop_Details.this, Add_Customer_Detail.class);
             startActivity(intent);
         } else {
             setContentView(R.layout.shop_details);
@@ -53,7 +53,7 @@ public class Shop_Details extends AppCompatActivity {
 
                 boolean check1 = conn.add_shop_details(gst, name, address, tcity, tdistrict, tstate, tpincode, tmob1, tmob2);
                 if (check1) {
-                    Intent intent = new Intent(Shop_Details.this, Add_Customer_Detail.class);
+                    Intent intent = new Intent(Add_Shop_Details.this, Add_Customer_Detail.class);
                     startActivity(intent);
                 }
             });
