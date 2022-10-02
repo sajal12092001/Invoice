@@ -67,12 +67,11 @@ public class Conn extends SQLiteOpenHelper {
         return r != -1;
     }
 
+
     public void update_shop_details(String gstno, String shopname, String shopaddress, String city, String district, String state, String pincode, String mob1, String mob2) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("update shop_details set gstno='" + gstno + "', shopname='" + shopname + "',shopaddress='" + shopaddress + "',city='" + city + "',district='" + district + "',state='" + state + "',pincode='" + pincode + "',mobile1='" + mob1 + "',mobile2='" + mob2 + "'");
     }
-
-
     public Cursor getSingleItmes(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.rawQuery("select *from item_details where id='" + id + "'", null);
@@ -125,6 +124,4 @@ public class Conn extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("update item_details set itemname='" + items + "',itemsize='" + size + "',itemrate='" + rate + "',quantity='" + quantity + "',subtotal='" + subtotal + "',itemdiscount='" + discount + "',total='" + total + "',sizetype='" + sizetype + "',category='" + category + "' where id='" + id + "';");
     }
-
-
 }

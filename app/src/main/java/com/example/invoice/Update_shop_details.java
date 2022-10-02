@@ -65,15 +65,15 @@ public class Update_shop_details extends AppCompatActivity {
             String address = shopaddress.getText().toString().trim().toUpperCase();
             String tcity = city.getText().toString().trim().toUpperCase();
             String tdistrict = district.getText().toString().trim().toUpperCase();
-            String tstate = state.getSelectedItem().toString().trim();
+            String tstate = state.getSelectedItem().toString().trim().toUpperCase();
             String tpincode = pincode.getText().toString().trim().toUpperCase();
             String tmob1 = mob1.getText().toString().trim().toUpperCase();
             String tmob2 = mob2.getText().toString().trim().toUpperCase();
 
-             conn.update_shop_details(gst, name, address, tcity, tdistrict, tstate, tpincode, tmob1, tmob2);
-                      Intent intent = new Intent(getApplicationContext(), Items_Recyclerview.class);
-                startActivity(intent);
+            conn.update_shop_details(gst, name, address, tcity, tdistrict, tstate, tpincode, tmob1, tmob2);
 
+                Intent intent = new Intent(getApplicationContext(), Items_Recyclerview.class);
+                startActivity(intent);
         });
     }
 }
