@@ -1,16 +1,24 @@
 package com.example.invoice;
 
+import static android.content.ContentValues.TAG;
+
+import android.content.ActivityNotFoundException;
+import android.content.ClipData;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.Chunk;
@@ -36,6 +44,7 @@ import java.time.format.DateTimeFormatter;
 public class Invoice extends AppCompatActivity {
     String cname, caddress, cmobile, date;
     String getgrandtotal = "";
+    File file1;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -54,9 +63,9 @@ public class Invoice extends AppCompatActivity {
 
         try {
             createpdf();
-            Toast.makeText(this, "" + getgrandtotal, Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             e.printStackTrace();
+            Toast.makeText(this, "" + e, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -68,30 +77,24 @@ public class Invoice extends AppCompatActivity {
         return myDateObj.format(myFormatObj);
     }
 
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void createpdf() throws Exception {
 
-
-        Cursor cursor = new Conn(this).get_shop_details();
-        String path = getExternalFilesDir(null) + "/Invoices/" + getDate();
-        //  String path = Environment.getExternalStoragePublicDirectory(DIRECTORY_DOWNLOADS) + "/Invoices" + "/" + getDate()+"/";
-
+        String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/Invoices" + "/" + getDate();
 
         File file = new File(path);
         if (!file.exists())
             file.mkdirs();
 
-        File file1 = new File(path + "/" + cname + "-" + date + ".pdf");
-        //File file1 = new File(path + "/" + "1" + ".pdf");
-        // file1.createNewFile();
+        file1 = new File(path + "/" + cname + "-" + date + ".pdf");
+
         if (!file1.exists()) {
             file1.createNewFile();
 
-        } else {
-            // Toast.makeText(this, "file not created", Toast.LENGTH_SHORT).show();
         }
 
-
+        Cursor cursor = new Conn(this).get_shop_details();
         try {
             Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream(file1, false));
@@ -113,7 +116,6 @@ public class Invoice extends AppCompatActivity {
             }
             document.add(gstLabel);
             document.add(gstno);
-
 
 
 
@@ -153,7 +155,6 @@ public class Invoice extends AppCompatActivity {
             assert img != null;
             img.setWidthPercentage(50);
             img.scaleToFit(70, 35);
-            ;
             img.setAlignment(Element.ALIGN_CENTER);
             document.add(img);
 
@@ -445,7 +446,6 @@ public class Invoice extends AppCompatActivity {
                 PdfPCell itemdiscount = new PdfPCell(new Paragraph(cursor1.getString(6)));
                 itemdiscount.setVerticalAlignment(Element.ALIGN_CENTER);
                 itemdiscount.setBorder(0);
-                ;
                 itemdiscount.setHorizontalAlignment(Element.ALIGN_CENTER);
                 itemtable.addCell(itemdiscount);
 
@@ -545,17 +545,38 @@ public class Invoice extends AppCompatActivity {
 
             document.close();
             Toast.makeText(this, file1.getAbsolutePath(), Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "File path is " + file1.getAbsolutePath());
 
-            startActivity(new Intent(Invoice.this, Items_Recyclerview.class));
-//
+            // startActivity(new Intent(Invoice.this, Items_Recyclerview.class));
+//           // Get the URI Path of file.
+            Uri uriPdfPath = FileProvider.getUriForFile(this, getApplicationContext().getPackageName(), file1);
+            Log.d("pdfPath", "" + uriPdfPath);
+
+            // Start Intent to View PDF from the Installed Applications.
+            Intent pdfOpenIntent = new Intent(Intent.ACTION_VIEW);
+            pdfOpenIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            pdfOpenIntent.setClipData(ClipData.newRawUri("", uriPdfPath));
+            pdfOpenIntent.setDataAndType(uriPdfPath, "application/pdf");
+            pdfOpenIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+
+            try {
+                startActivity(pdfOpenIntent);
+            } catch (ActivityNotFoundException activityNotFoundException) {
+                Toast.makeText(this, "There is no app to load corresponding PDF", Toast.LENGTH_LONG).show();
+
+            }
+
 //            new Conn(this).delete_create_item_table();
             finish();
 //
         } catch (Exception e) {
+            Toast.makeText(this, "hi\n" + e, Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "hihihih " + e);
             e.printStackTrace();
         }
-    }
 
+
+    }
 
 }
 
@@ -590,5 +611,6 @@ class TypeToWord {
         }
         return word;
     }
+
 
 }

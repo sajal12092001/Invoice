@@ -1,8 +1,10 @@
 package com.example.invoice;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -36,12 +39,17 @@ public class Items_Recyclerview extends AppCompatActivity {
     double grandtotal = 0;
 
 
-    @SuppressLint({"SetTextI18n", "NotifyDataSetChanged"})
+    @SuppressLint({"SetTextI18n", "NotifyDataSetChanged", "InlinedApi"})
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_items_recyclerview);
+
+
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.MANAGE_EXTERNAL_STORAGE},
+                PackageManager.PERMISSION_GRANTED);
         setTitle("Invoice Details");
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         Conn conn = new Conn(this);
@@ -80,20 +88,9 @@ public class Items_Recyclerview extends AppCompatActivity {
         }
 
 
-        shopdet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Items_Recyclerview.this,Update_shop_details.class));
+        shopdet.setOnClickListener(view -> startActivity(new Intent(Items_Recyclerview.this, Update_shop_details.class)));
 
-            }
-        });
-
-        custdet.setOnClickListener(view -> {
-
-            startActivity(new Intent(Items_Recyclerview.this,update_customer.class));
-
-
-        });
+        custdet.setOnClickListener(view -> startActivity(new Intent(Items_Recyclerview.this, update_customer.class)));
 
         grandtot = findViewById(R.id.grandtotal);
 
@@ -128,7 +125,7 @@ public class Items_Recyclerview extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.O)
     private String getdate() {
         LocalDateTime myDateObj = LocalDateTime.now();
-        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("E, dd MMM yyyy hh:mm:ss a");
+        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("E, dd MMM yyyy hh-mm-ssa");
         return myDateObj.format(myFormatObj);
     }
 
@@ -150,4 +147,5 @@ public class Items_Recyclerview extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }
