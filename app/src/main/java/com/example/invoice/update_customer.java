@@ -52,6 +52,7 @@ public class update_customer extends AppCompatActivity {
             } else {
                 Intent intent = new Intent(getApplicationContext(), Items_Recyclerview.class);
                 startActivity(intent);
+                finish();
 
             }
         });

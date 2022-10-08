@@ -9,7 +9,7 @@
     <string name="quantity">Quantity</string>
 
     <string name="add_item_to_bill">Add item</string>
-    <string name="finish">Finish</string>
+    <string name="download">Download</string>
     <string name="gstin_number">GSTIN Number</string>
     <string name="shop_name">Shop Name</string>
     <string name="shop_address">Shop Address</string>
@@ -49,6 +49,7 @@
     <string name="customer_details">Customer Details</string>
     <string name="name">Name :</string>
     <string name="address1">Address :</string>
+    <string name="share">Share</string>
 
 
     <string-array name="state">

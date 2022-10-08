@@ -89,18 +89,23 @@ public class Conn extends SQLiteOpenHelper {
         return db.rawQuery("select *from shop_details", null);
     }
 
-    public void delete_create_item_table() {
+    public void delete_item_details() {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
 
-        sqLiteDatabase.execSQL("drop table items;");
+        sqLiteDatabase.execSQL("drop table item_details;");
 
         sqLiteDatabase.execSQL("CREATE TABLE item_details (\n" +
                 "    id       INTEGER PRIMARY KEY ASC AUTOINCREMENT\n" +
                 "                     NOT NULL,\n" +
                 "    itemname STRING  NOT NULL,\n" +
+                "    itemsize STRING  NOT NULL,\n" +
                 "    itemrate STRING  NOT NULL,\n" +
                 "    quantity STRING  NOT NULL,\n" +
-                "    subtotal STRING  NOT NULL\n" +
+                "    subtotal STRING  NOT NULL,\n" +
+                "    itemdiscount STRING  NOT NULL,\n" +
+                "    total STRING  NOT NULL\n," +
+                "    sizetype STRING  NOT NULL\n," +
+                "    category STRING  NOT NULL\n" +
                 ");\n");
     }
 

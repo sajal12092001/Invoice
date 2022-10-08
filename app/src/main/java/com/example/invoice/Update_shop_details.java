@@ -39,7 +39,7 @@ public class Update_shop_details extends AppCompatActivity {
         mob2 = findViewById(R.id.mob2);
         setbutton = findViewById(R.id.setbutton);
 
-        List your_array = Arrays.asList(getResources().getStringArray(R.array.state));
+        List<String> your_array = Arrays.asList(getResources().getStringArray(R.array.state));
 
 
         Cursor getshopdetails_cursor = conn.get_shop_details();
@@ -74,6 +74,7 @@ public class Update_shop_details extends AppCompatActivity {
 
                 Intent intent = new Intent(getApplicationContext(), Items_Recyclerview.class);
                 startActivity(intent);
+                finish();
         });
     }
 }
