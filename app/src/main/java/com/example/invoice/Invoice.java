@@ -548,6 +548,12 @@ public class Invoice extends AppCompatActivity {
             Log.d(TAG, "File path is " + file1.getAbsolutePath());
 
             // startActivity(new Intent(Invoice.this, Items_Recyclerview.class));
+
+            /*
+
+            for veiwing created invoice
+
+             */
 //           // Get the URI Path of file.
             Uri uriPdfPath = FileProvider.getUriForFile(this, getApplicationContext().getPackageName(), file1);
             Log.d("pdfPath", "" + uriPdfPath);
