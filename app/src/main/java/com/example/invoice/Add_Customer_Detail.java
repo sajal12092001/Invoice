@@ -37,6 +37,12 @@ public class Add_Customer_Detail extends AppCompatActivity {
             if (cname.isEmpty()) {
                 name.setError("Please enter the customer name");
             } else {
+                SharedPreferences sharedPreferences1 = getSharedPreferences("check_exist_file", MODE_PRIVATE);
+                SharedPreferences.Editor editor1 = sharedPreferences1.edit();
+                editor1.putString("file_name", "");
+                editor1.apply();
+
+                new Conn(this).delete_item_details();
                 Intent intent = new Intent(Add_Customer_Detail.this, Items_Recyclerview.class);
                 startActivity(intent);
 

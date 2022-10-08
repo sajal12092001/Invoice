@@ -2,33 +2,37 @@ package com.example.invoice;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.File;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class Items_Recyclerview extends AppCompatActivity {
-    Button finish;
+    TextView finish, share;
     TextView grandtot;
     RecyclerView recview;
     CardView shopdet, custdet;
@@ -47,9 +51,7 @@ public class Items_Recyclerview extends AppCompatActivity {
         setContentView(R.layout.add_items_recyclerview);
 
 
-        ActivityCompat.requestPermissions(this,
-                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.MANAGE_EXTERNAL_STORAGE},
-                PackageManager.PERMISSION_GRANTED);
+
         setTitle("Invoice Details");
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         Conn conn = new Conn(this);
@@ -99,7 +101,8 @@ public class Items_Recyclerview extends AppCompatActivity {
 
         datalist = new ArrayList<>();
 
-        finish = findViewById(R.id.finish);
+        finish = findViewById(R.id.Download);
+        share = findViewById(R.id.share);
 
 
         Cursor cursor = conn.get_items();
@@ -110,15 +113,66 @@ public class Items_Recyclerview extends AppCompatActivity {
             recview.setAdapter(adapter);
             adapter.notifyDataSetChanged();
             grandtotal += Double.parseDouble(cursor.getString(7));
+
+
         }
+
+        SharedPreferences sharedPreferences1 = getSharedPreferences("check_exist_file", MODE_PRIVATE);
 
         grandtot.setText("Rs. " + grandtotal);
         finish.setOnClickListener(view -> {
 
-            Intent intent = new Intent(getApplicationContext(), Invoice.class);
-            intent.putExtra("grandtotal", "" + grandtotal);
-            intent.putExtra("date", getdate());
-            startActivity(intent);
+            if (new File(sharedPreferences1.getString("file_name", "")).exists()) {
+                Toast.makeText(this, "This invoice is already created in this path -> " + sharedPreferences1.getString("file_name", ""), Toast.LENGTH_SHORT).show();
+
+            } else {
+
+                Intent intent = new Intent(getApplicationContext(), Invoice.class);
+                intent.putExtra("grandtotal", "" + grandtotal);
+                intent.putExtra("date", getdate());
+                startActivity(intent);
+
+            }
+
+
+        });
+
+
+        share.setOnClickListener(view -> {
+
+
+            if (new File(sharedPreferences1.getString("file_name", "")).exists()) {
+
+                 /*
+
+            for veiwing created invoice
+
+             */
+//           // Get the URI Path of file.
+                Uri uriPdfPath = FileProvider.getUriForFile(this, getApplicationContext().getPackageName(), new File(sharedPreferences1.getString("file_name", "")));
+                Log.d("pdfPath", "" + uriPdfPath);
+
+                // Start Intent to View PDF from the Installed Applications.
+                Intent pdfOpenIntent = new Intent("android.intent.action.SEND");
+
+                pdfOpenIntent.setType("application/pdf");
+                pdfOpenIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                pdfOpenIntent.putExtra("android.intent.extra.STREAM", uriPdfPath);
+                pdfOpenIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+
+                try {
+                    startActivity(pdfOpenIntent);
+                } catch (ActivityNotFoundException activityNotFoundException) {
+                    Toast.makeText(this, "There is no app to load corresponding PDF", Toast.LENGTH_LONG).show();
+
+                }
+
+            } else {
+                Toast.makeText(this, "You have to first download the invoice.", Toast.LENGTH_SHORT).show();
+
+            }
+
+
         });
     }
 

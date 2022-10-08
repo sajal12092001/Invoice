@@ -85,7 +85,6 @@ public class Add_Items extends AppCompatActivity {
 
             } else if (selectsize.getSelectedItem().equals("-Select Size-")) {
                 Toast.makeText(Add_Items.this, "Please select item size", Toast.LENGTH_SHORT).show();
-                ;
 
             }
 
