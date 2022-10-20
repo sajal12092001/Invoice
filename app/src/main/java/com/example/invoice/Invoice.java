@@ -136,25 +136,30 @@ public class Invoice extends AppCompatActivity {
                 document.add(shop_mob);
 
 
-             /*
-            -----------Image------------------
-            */
+                if (cursor.getBlob(10).length != 0) {
+                 /*
+                 ------------ shop logo ----------
+                  */
 
-                Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.om);
-                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                bm.compress(Bitmap.CompressFormat.PNG, 100, stream);
-                Image img = null;
-                byte[] byteArray = stream.toByteArray();
-                try {
-                    img = Image.getInstance(byteArray);
-                } catch (BadElementException | IOException e) {
-                    e.printStackTrace();
+//                Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.om);
+                    Bitmap bm = BitmapFactory.decodeByteArray(cursor.getBlob(10), 0, cursor.getBlob(10).length);
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    bm.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                    Image img = null;
+                    byte[] byteArray = stream.toByteArray();
+                    try {
+                        img = Image.getInstance(byteArray);
+                    } catch (BadElementException | IOException e) {
+                        e.printStackTrace();
+                    }
+                    assert img != null;
+                    img.setWidthPercentage(50);
+                    img.scaleToFit(70, 35);
+                    img.setAlignment(Element.ALIGN_CENTER);
+                    document.add(img);
                 }
-                assert img != null;
-                img.setWidthPercentage(50);
-                img.scaleToFit(70, 35);
-                img.setAlignment(Element.ALIGN_CENTER);
-                document.add(img);
+
+
 
 
             /*

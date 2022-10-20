@@ -28,7 +28,8 @@ public class Conn extends SQLiteOpenHelper {
                 "    state       STRING  NOT NULL,\n" +
                 "    pincode     STRING  NOT NULL,\n" +
                 "    mobile1     STRING  NOT NULL,\n" +
-                "    mobile2     STRING  NOT NULL\n" +
+                "    mobile2     STRING  NOT NULL,\n" +
+                "   logo BLOB\n" +
                 ");\n");
 
         sqLiteDatabase.execSQL("CREATE TABLE item_details (\n" +
@@ -44,6 +45,7 @@ public class Conn extends SQLiteOpenHelper {
                 "    sizetype STRING  NOT NULL\n," +
                 "    category STRING  NOT NULL\n" +
                 ");\n");
+
     }
 
     @Override
@@ -51,7 +53,7 @@ public class Conn extends SQLiteOpenHelper {
 
     }
 
-    public boolean add_shop_details(String gstno, String shopname, String shopaddress, String city, String district, String state, String pincode, String mob1, String mob2) {
+    public boolean add_shop_details(String gstno, String shopname, String shopaddress, String city, String district, String state, String pincode, String mob1, String mob2, byte[] imagearray) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues c = new ContentValues();
         c.put("gstno", gstno);
@@ -63,6 +65,7 @@ public class Conn extends SQLiteOpenHelper {
         c.put("pincode", pincode);
         c.put("mobile1", mob1);
         c.put("mobile2", mob2);
+        c.put("logo", imagearray);
         long r = db.insert("shop_details", null, c);
         return r != -1;
     }
@@ -72,6 +75,7 @@ public class Conn extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("update shop_details set gstno='" + gstno + "', shopname='" + shopname + "',shopaddress='" + shopaddress + "',city='" + city + "',district='" + district + "',state='" + state + "',pincode='" + pincode + "',mobile1='" + mob1 + "',mobile2='" + mob2 + "'");
     }
+
     public Cursor getSingleItmes(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.rawQuery("select *from item_details where id='" + id + "'", null);
@@ -129,4 +133,6 @@ public class Conn extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("update item_details set itemname='" + items + "',itemsize='" + size + "',itemrate='" + rate + "',quantity='" + quantity + "',subtotal='" + subtotal + "',itemdiscount='" + discount + "',total='" + total + "',sizetype='" + sizetype + "',category='" + category + "' where id='" + id + "';");
     }
+
+
 }

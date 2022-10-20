@@ -26,8 +26,6 @@ public class Update_shop_details extends AppCompatActivity {
         setTitle("Shop Details");
 
 
-
-
         gstno = findViewById(R.id.gstno);
         shopname = findViewById(R.id.shopname);
         shopaddress = findViewById(R.id.shopaddress);
@@ -46,15 +44,15 @@ public class Update_shop_details extends AppCompatActivity {
         if (getshopdetails_cursor.moveToFirst()) {
             gstno.setText(getshopdetails_cursor.getString(1));
             shopname.setText(getshopdetails_cursor.getString(2));
-            shopaddress.setText(getshopdetails_cursor.getString(3) );
-            city.setText( getshopdetails_cursor.getString(4) );
-            district.setText( getshopdetails_cursor.getString(5));
-            state.setSelection(your_array.indexOf( getshopdetails_cursor.getString(6)));
-            pincode.setText( getshopdetails_cursor.getString(7));
+            shopaddress.setText(getshopdetails_cursor.getString(3));
+            city.setText(getshopdetails_cursor.getString(4));
+            district.setText(getshopdetails_cursor.getString(5));
+            state.setSelection(your_array.indexOf(getshopdetails_cursor.getString(6)));
+            pincode.setText(getshopdetails_cursor.getString(7));
 
-                mob1.setText(getshopdetails_cursor.getString(8));
+            mob1.setText(getshopdetails_cursor.getString(8));
 
-                mob2.setText( getshopdetails_cursor.getString(9));
+            mob2.setText(getshopdetails_cursor.getString(9));
 
         }
 
@@ -72,9 +70,9 @@ public class Update_shop_details extends AppCompatActivity {
 
             conn.update_shop_details(gst, name, address, tcity, tdistrict, tstate, tpincode, tmob1, tmob2);
 
-                Intent intent = new Intent(getApplicationContext(), Items_Recyclerview.class);
-                startActivity(intent);
-                finish();
+            Intent intent = new Intent(getApplicationContext(), Items_Recyclerview.class);
+            startActivity(intent);
+            finish();
         });
     }
 }

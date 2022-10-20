@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -39,20 +38,17 @@ public class Add_Items_Adapter extends RecyclerView.Adapter<Add_Items_Adapter.vi
         holder.discount.setText(datalist.get(position).getDiscount());
         holder.total.setText("Rs. " + datalist.get(position).getSubtotal());
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        holder.itemView.setOnClickListener(view -> {
 
-                Intent intent = new Intent(holder.itemView.getContext(), Update_Items.class);
-                intent.putExtra("id", datalist.get(position).getId());
-                intent.putExtra("sizetype",datalist.get(position).getSizetype());
-                intent.putExtra("category",datalist.get(position).getCateogry());
-                //Toast.makeText(holder.itemView.getContext(), ""+datalist.get(position).getSizetype(), Toast.LENGTH_SHORT).show();
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                holder.itemView.getContext().startActivity(intent);
+            Intent intent = new Intent(holder.itemView.getContext(), Update_Items.class);
+            intent.putExtra("id", datalist.get(position).getId());
+            intent.putExtra("sizetype", datalist.get(position).getSizetype());
+            intent.putExtra("category", datalist.get(position).getCateogry());
+            //Toast.makeText(holder.itemView.getContext(), ""+datalist.get(position).getSizetype(), Toast.LENGTH_SHORT).show();
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            holder.itemView.getContext().startActivity(intent);
 
 
-            }
         });
     }
 
