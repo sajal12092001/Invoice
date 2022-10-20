@@ -52,6 +52,9 @@
     <string name="share">Share</string>
     <string name="select_image">SELECT IMAGE</string>
     <string name="shop_icon">Shop Icon (Optional)</string>
+    <string name="shop_icon1">Shop Icon</string>
+    <string name="change_logo">Change Logo</string>
+    <string name="delete_logo">Delete logo</string>
 
 
     <string-array name="state">

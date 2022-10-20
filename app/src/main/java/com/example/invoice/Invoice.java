@@ -136,10 +136,12 @@ public class Invoice extends AppCompatActivity {
                 document.add(shop_mob);
 
 
-                if (cursor.getBlob(10).length != 0) {
                  /*
                  ------------ shop logo ----------
                   */
+
+                if (cursor.getBlob(10).length != 0) {
+
 
 //                Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.om);
                     Bitmap bm = BitmapFactory.decodeByteArray(cursor.getBlob(10), 0, cursor.getBlob(10).length);

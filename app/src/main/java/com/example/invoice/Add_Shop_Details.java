@@ -43,9 +43,11 @@ public class Add_Shop_Details extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.MANAGE_EXTERNAL_STORAGE},
                 PackageManager.PERMISSION_GRANTED);
+
         Cursor check = conn.get_shop_details();
         if (check.getCount() == 1) {
             Intent intent = new Intent(Add_Shop_Details.this, Add_Customer_Detail.class);

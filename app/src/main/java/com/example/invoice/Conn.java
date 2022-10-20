@@ -71,9 +71,21 @@ public class Conn extends SQLiteOpenHelper {
     }
 
 
-    public void update_shop_details(String gstno, String shopname, String shopaddress, String city, String district, String state, String pincode, String mob1, String mob2) {
+    public void update_shop_details(String gstno, String shopname, String shopaddress, String city, String district, String state, String pincode, String mob1, String mob2,byte[] imagearray) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("update shop_details set gstno='" + gstno + "', shopname='" + shopname + "',shopaddress='" + shopaddress + "',city='" + city + "',district='" + district + "',state='" + state + "',pincode='" + pincode + "',mobile1='" + mob1 + "',mobile2='" + mob2 + "'");
+
+        ContentValues c = new ContentValues();
+        c.put("gstno", gstno);
+        c.put("shopname", shopname);
+        c.put("shopaddress", shopaddress);
+        c.put("city", city);
+        c.put("district", district);
+        c.put("state", state);
+        c.put("pincode", pincode);
+        c.put("mobile1", mob1);
+        c.put("mobile2", mob2);
+        c.put("logo", imagearray);
+        db.update("shop_details",c,"id=1",null);
     }
 
     public Cursor getSingleItmes(String id) {
