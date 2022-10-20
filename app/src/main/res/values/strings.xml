@@ -50,6 +50,8 @@
     <string name="name">Name :</string>
     <string name="address1">Address :</string>
     <string name="share">Share</string>
+    <string name="select_image">SELECT IMAGE</string>
+    <string name="shop_icon">Shop Icon (Optional)</string>
 
 
     <string-array name="state">
